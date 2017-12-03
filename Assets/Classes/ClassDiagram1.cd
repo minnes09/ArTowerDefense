@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Player">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAACAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Assets\Classes\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Enemy">
+    <Position X="9" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAACAAAQAAAAEAAAAAABAAAAEAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Classes\Enemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MinionManager">
+    <Position X="0.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAgACAAAAAAAAUAgAAAABAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Classes\MinionManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MageMinion">
+    <Position X="3" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Classes\Minions\MageMinion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AbilitiesManager">
+    <Position X="6.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAQAAAACAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Classes\AbilitiesManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AbstractAbility">
+    <Position X="9" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Classes\AbstractAbility.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AbstractMinion">
+    <Position X="3" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAgAAAACAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAEI=</HashCode>
+      <FileName>Assets\Classes\Minions\AbstractMinion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

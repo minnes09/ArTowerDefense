@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="steelseries" size="50.000000 50.000000" />
+    <ImageTarget name="forest" size="312.000000 445.000000" />
+    <ImageTarget name="pokemon" size="1008.000000 689.000000" />
+    <ImageTarget name="rocce" size="259.000000 194.000000" />
+    <ImageTarget name="terreno" size="960.000000 540.000000" />
+    <ImageTarget name="prato" size="1023.000000 683.000000" />
+    <ImageTarget name="quablock" size="4032.000000 5377.967773" />
+  </Tracking>
+</QCARConfig>
