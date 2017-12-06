@@ -23,13 +23,24 @@ public class GameState : MonoBehaviour {
     private static GameState gameState = null;
 
 
-    protected GameState()    {}
+    protected void Awake()
+    {
+        if (gameState == null)
+            gameState = this;
+    }
 
     public static GameState Instance()
     {
         if(gameState == null)
         {
-            gameState = new GameState();
+            Debug.Log("GameState is null");
+            gameState = GameObject.FindObjectOfType<GameState>();
+            if (gameState == null)
+            {
+                GameObject container = new GameObject("GameState");
+                container.AddComponent<GameState>();
+            }
+                Debug.LogError("Singleton GameState instance has been not found.");
         }
         return gameState;
     }
