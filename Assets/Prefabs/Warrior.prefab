@@ -189,6 +189,7 @@ GameObject:
   - component: {fileID: 114478711380464340}
   - component: {fileID: 114903766657876916}
   - component: {fileID: 195176947798169434}
+  - component: {fileID: 54448527182136294}
   m_Layer: 0
   m_Name: Warrior
   m_TagString: Untagged
@@ -421,7 +422,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1650126483146254}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -12.8, y: 0.7584076, z: -27.7}
+  m_LocalPosition: {x: 284.60168, y: 3.659, z: 3.597168}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 4079926268063578}
@@ -573,8 +574,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1639163448343692}
-  m_LocalRotation: {x: -0.3319568, y: 0.62434316, z: -0.33195737, w: 0.62434334}
-  m_LocalPosition: {x: 0, y: 0.8039894, z: -0.20564641}
+  m_LocalRotation: {x: -0.50000006, y: 0.50000006, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: -0, y: 0.8039894, z: -0.093}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4281134726795036}
@@ -582,7 +583,7 @@ Transform:
   - {fileID: 4383186113746054}
   m_Father: {fileID: 4190481475010952}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: -90}
 --- !u!4 &4972439596084870
 Transform:
   m_ObjectHideFlags: 1
@@ -597,6 +598,21 @@ Transform:
   m_Father: {fileID: 4140574967182076}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &54448527182136294
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1650126483146254}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!111 &111952363201925728
 Animation:
   m_ObjectHideFlags: 1
@@ -723,7 +739,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1.8
   m_BaseOffset: 0
   m_WalkableMask: 13
   m_ObstacleAvoidanceType: 3

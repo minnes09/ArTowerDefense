@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameState : MonoBehaviour {
 
-    private bool paused = true;
+    private bool paused = false;
 
     public bool Paused
     {
@@ -49,6 +49,7 @@ public class GameState : MonoBehaviour {
         if (!Paused)
         {
             Paused = true;
+            Debug.Log("game paused");
         }
     }
 
@@ -57,6 +58,7 @@ public class GameState : MonoBehaviour {
         if (Paused)
         {
             Paused = false;
+            Debug.Log("game Unpaused");
         }
     }
 }

@@ -18,7 +18,7 @@ public class MinionMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!GameState.Instance().Paused && this.transform.position != enemy.position)
+        if (!GameState.Instance().Paused && this.transform.position != enemy.position )
         {
             // ... set the destination of the nav mesh agent to the player.
             nav.SetDestination(enemy.position);
