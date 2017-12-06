@@ -10,6 +10,9 @@ public class MinionManager : MonoBehaviour
 	List<GameObject> minions = new List<GameObject>();
 	public Transform spawnPos;
     public string myEnemy;
+
+    public Transform MinionParent { get; set; }
+
     private void Awake()
     {
     }
@@ -25,24 +28,30 @@ public class MinionManager : MonoBehaviour
             // Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
             if (rndMinion == 0)
             {
-                var instantiatedWar = Instantiate(warrior, this.spawnPos.position, this.spawnPos.rotation);
-                instantiatedWar.GetComponent<MinionMovement>().myEnemy = myEnemy;
-                //SpawnSingleMinion(warrior, newSpawnPos);
+                GameObject instantiatedWar = Instantiate(warrior, this.spawnPos.position, this.spawnPos.rotation);
+                SetupMinion(instantiatedWar);
             }
             else
             {
-                var instantiatedMage = Instantiate(mage, this.spawnPos.position, this.spawnPos.rotation);
-                instantiatedMage.GetComponent<MinionMovement>().myEnemy = myEnemy;
+                GameObject instantiatedMage = Instantiate(mage, this.spawnPos.position, this.spawnPos.rotation);
+                SetupMinion(instantiatedMage);
             }
         }
 	}
+
+    private void SetupMinion(GameObject minion)
+    {
+        minions.Add(minion);
+        minion.GetComponent<MinionMovement>().myEnemy = myEnemy;
+        minion.transform.parent = MinionParent;
+    }
 
     public void SpawnSingleMinion(GameObject minion, Vector3 spawnPos)
     {
         if (!GameState.Instance().Paused)
         {
-            Instantiate(minion, spawnPos, this.spawnPos.rotation);
-            minion.GetComponent<MinionMovement>().myEnemy = myEnemy;
+            GameObject instantiatedMinion = Instantiate(minion, spawnPos, this.spawnPos.rotation);
+            SetupMinion(instantiatedMinion);
         }
     }
 }

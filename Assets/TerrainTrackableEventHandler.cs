@@ -10,14 +10,14 @@ public class TerrainTrackableEventHandler : DefaultTrackableEventHandler {
 	{
 		base.OnTrackingFound();
 		var terrainComponents = GetComponentsInChildren<Terrain> (true);
-        var terrainColliderComponents = GetComponentsInChildren<TerrainCollider>(true);
+        //var terrainColliderComponents = GetComponentsInChildren<TerrainCollider>(true);
         var meshRendererComponents = GetComponentsInChildren<MeshRenderer>(true);
         var meshColliderComponents = GetComponentsInChildren<MeshCollider>(true);
         // Enable terrains:
         foreach (var component in terrainComponents)
 			component.enabled = true;
-        foreach (var component in terrainColliderComponents)
-            component.enabled = true;
+        /*foreach (var component in terrainColliderComponents)
+            component.enabled = true;*/
         foreach (var component in meshRendererComponents)
             component.enabled = true;
         foreach (var component in meshColliderComponents)
@@ -31,14 +31,14 @@ public class TerrainTrackableEventHandler : DefaultTrackableEventHandler {
         GameState.Instance().Pause();
         base.OnTrackingFound();
 		var terrainComponents = GetComponentsInChildren<Terrain> (true);
-        var terrainColliderComponents = GetComponentsInChildren<TerrainCollider>(true);
+        //var terrainColliderComponents = GetComponentsInChildren<TerrainCollider>(true);
         var meshRendererComponents = GetComponentsInChildren<MeshRenderer>(true);
         var meshColliderComponents = GetComponentsInChildren<MeshCollider>(true);
         // Disable terrains:
         foreach (var component in terrainComponents)
 			component.enabled = false;
-        foreach (var component in terrainColliderComponents)
-            component.enabled = false;
+        /*foreach (var component in terrainColliderComponents)
+            component.enabled = false;*/
         foreach (var component in meshRendererComponents)
             component.enabled = false;
         foreach (var component in meshColliderComponents)

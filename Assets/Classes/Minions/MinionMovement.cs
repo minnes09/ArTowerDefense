@@ -16,17 +16,25 @@ public class MinionMovement : MonoBehaviour {
         enemy = GameObject.FindGameObjectWithTag(myEnemy).transform;
     }
 	
-	// Update is called once per frame
+	// Update is called once per frame TOFIX
 	void Update () {
-        if (!GameState.Instance().Paused && this.transform.position != enemy.position )
+        if (!GameState.Instance().Paused)
         {
-            // ... set the destination of the nav mesh agent to the player.
-            nav.SetDestination(enemy.position);
+            if (nav.isStopped) nav.isStopped = false;
+            if (this.transform.position != enemy.position )
+            {
+                // ... set the destination of the nav mesh agent to the player.
+                if(nav.destination != enemy.position)   nav.SetDestination(enemy.position);
+            }
+            else
+            {
+                // ... disable the nav mesh agent.
+                nav.enabled = false;
+            }
         }
         else
         {
-            // ... disable the nav mesh agent.
-            nav.enabled = false;
+            if(!nav.isStopped)  nav.isStopped = true;
         }
     }
 }

@@ -7,11 +7,12 @@ public class Enemy : MonoBehaviour {
     public int life = 100;
     public float spawnDelay = 4f;
 	MinionManager minionManager;
-    string myEnemy = "Player";
+    //string myEnemy = "Player";
 	void Awake(){
         minionManager = GetComponent<MinionManager>();
-        minionManager.myEnemy = myEnemy;
-        GameState.Instance();
+        //minionManager.myEnemy = myEnemy;
+        minionManager.MinionParent = this.transform;
+        //GameState.Instance();
 	}
 
 	// Use this for initialization

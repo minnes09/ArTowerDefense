@@ -61,4 +61,10 @@ public class GameState : MonoBehaviour {
             Debug.Log("game Unpaused");
         }
     }
+
+    public void SwitchState()
+    {
+        if (Paused) UnPause();
+        else Pause();
+    }
 }
