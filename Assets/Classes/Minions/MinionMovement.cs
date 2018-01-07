@@ -6,14 +6,17 @@ public class MinionMovement : MonoBehaviour {
     public string myEnemy;
     Transform enemy;
     NavMeshAgent nav;               // Reference to the nav mesh agent.
+    public Transform warpPos;
 
     private void Awake()
     {
-        nav = GetComponent<NavMeshAgent>();
+        
     }
     // Use this for initialization
     void Start () {
+        nav = GetComponent<NavMeshAgent>();
         enemy = GameObject.FindGameObjectWithTag(myEnemy).transform;
+        nav.Warp(warpPos.position);
     }
 	
 	// Update is called once per frame TOFIX

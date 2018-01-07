@@ -11,6 +11,7 @@ public class Player : MonoBehaviour {
     private void Awake()
     {
         minionManager = GetComponent<MinionManager>();
+        minionManager.spawnPos = this.transform;
         minionManager.MinionParent = this.transform;
     }
     // MinionManager minionManager;
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour {
 	
 	public void SpawnMinion(AbstractMinion minion)
     {
-        minionManager.SpawnSingleMinion(minion.gameObject, this.transform.position);
+        if(!GameState.Instance().Paused)
+            minionManager.SpawnSingleMinion(minion.gameObject, this.transform.position);
     }
 }
