@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
-    <ImageTarget name="steelseries" size="50.000000 50.000000" />
+    <ImageTarget name="mapTarget" size="30.000000 22.459240" />
     <ImageTarget name="forest" size="312.000000 445.000000" />
     <ImageTarget name="pokemon" size="1008.000000 689.000000" />
     <ImageTarget name="rocce" size="259.000000 194.000000" />
