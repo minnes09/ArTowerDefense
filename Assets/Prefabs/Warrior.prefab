@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 54448527182136294}
   - component: {fileID: 114040396661484846}
   - component: {fileID: 135663481206299828}
-  - component: {fileID: 114297526350339684}
+  - component: {fileID: 114727589768755264}
   m_Layer: 0
   m_Name: Warrior
   m_TagString: Untagged
@@ -425,7 +425,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1650126483146254}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 446.96384, y: 1.98, z: 3.5750656}
+  m_LocalPosition: {x: 365.0136, y: 0.33712524, z: -6.972328}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 4079926268063578}
@@ -658,18 +658,6 @@ MonoBehaviour:
   timeBetweenAttacks: 1
   attackDamage: 50
   myEnemy: 
---- !u!114 &114297526350339684
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1650126483146254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ddd363099fbbd248b1b55fa603a59cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  life: 250
 --- !u!114 &114478711380464340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -681,6 +669,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b33f933f98f874380ac20b35106dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114727589768755264
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1650126483146254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a825dc107c505342b4b988fec6afc94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBetweenAttacks: 1
+  attackDamage: 50
+  myEnemy: 
 --- !u!114 &114903766657876916
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -704,8 +706,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!137 &137202512490970470
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -773,7 +775,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.65
-  m_Speed: 5
+  m_Speed: 20
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

@@ -9,9 +9,9 @@ public class Player : MonoBehaviour {
     MinionManager minionManager;
     private void Awake()
     {
+        health = GetComponent<Health>();
         health.Life = 1000;
         minionManager = GetComponent<MinionManager>();
-        minionManager.spawnPos = this.transform;
         minionManager.MinionParent = this.transform;
     }
     // MinionManager minionManager;

@@ -67,4 +67,10 @@ public class GameState : MonoBehaviour {
         if (Paused) UnPause();
         else Pause();
     }
+
+    public void End(string name)
+    {
+        Pause();
+        Debug.Log("GAME END: " + name + " LOSE");
+    }
 }

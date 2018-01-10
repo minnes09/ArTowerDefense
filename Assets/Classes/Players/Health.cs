@@ -17,17 +17,12 @@ public class Health : MonoBehaviour
             life = value;
         }
     }
-
-
-    // Use this for initialization
-    void Start()
+    
+    public void UpdateHealth(int damage)
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        Life -= damage;
+        Debug.Log(transform.name + " health: " + life);
+        if (Life <= 0)
+            GameState.Instance().End(transform.name);
     }
 }

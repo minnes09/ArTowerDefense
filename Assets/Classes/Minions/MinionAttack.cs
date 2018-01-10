@@ -16,18 +16,18 @@ public class MinionAttack : MonoBehaviour
 
     float timer;
 
-    void Awake()
+    void Start()
     {
         //set the master and enemy objects
         if (myEnemy == "Player")
         {
-            masterHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
-            enemyHealth = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Health>();
+            masterHealth = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Health>();
+            enemyHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
         }
         else if(myEnemy == "Enemy")
         {
-            enemyHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
-            masterHealth = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Health>();
+            masterHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
+            enemyHealth = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Health>();
         }
         else throw new System.Exception("Master and enemy are set in a wrong way");
        // anim = GetComponent<Animator>();
@@ -38,8 +38,9 @@ public class MinionAttack : MonoBehaviour
         if (other.gameObject == GameObject.FindGameObjectWithTag(myEnemy))
         {
             enemyInRange = true;
-            Debug.Log("Minion in range");
+            //Debug.Log(myEnemy + " in range");
         }
+
     }
 
 
@@ -48,7 +49,7 @@ public class MinionAttack : MonoBehaviour
         if (other.gameObject == GameObject.FindGameObjectWithTag(myEnemy))
         {
             enemyInRange = false;
-            Debug.Log("Minion not in range anymore");
+            //Debug.Log(myEnemy + " not in range anymore");
         }
     }
 
@@ -74,7 +75,8 @@ public class MinionAttack : MonoBehaviour
         timer = 0f;
         if (enemyHealth.Life > 0) //fix to check any enemy
         {
-            enemyHealth.Life -= attackDamage;
+            enemyHealth.UpdateHealth(attackDamage);
+            //Debug.Log(myEnemy + "health: " + enemyHealth.Life);
         }
     }
 }
