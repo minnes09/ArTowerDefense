@@ -44,6 +44,7 @@ public class MinionManager : MonoBehaviour
         minions.Add(minion);
         minion.GetComponent<MinionMovement>().myEnemy = myEnemy;
         minion.GetComponent<MinionMovement>().warpPos = spawnPos;
+        minion.GetComponent<MinionAttack>().myEnemy = myEnemy;
         minion.transform.parent = MinionParent;
     }
 

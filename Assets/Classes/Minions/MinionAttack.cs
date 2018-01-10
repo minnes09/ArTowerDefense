@@ -8,8 +8,8 @@ public class MinionAttack : MonoBehaviour
     public string myEnemy;
 
     //Animator anim;
-    GameObject master;
-    GameObject enemy;
+    Health masterHealth;
+    Health enemyHealth;
 
     bool enemyInRange;
     bool minionInRange;
@@ -21,13 +21,13 @@ public class MinionAttack : MonoBehaviour
         //set the master and enemy objects
         if (myEnemy == "Player")
         {
-            master = GameObject.FindGameObjectWithTag("Player");
-            enemy = GameObject.FindGameObjectWithTag("Enemy");
+            masterHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
+            enemyHealth = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Health>();
         }
         else if(myEnemy == "Enemy")
         {
-            enemy = GameObject.FindGameObjectWithTag("Player");
-            master = GameObject.FindGameObjectWithTag("Enemy");
+            enemyHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
+            masterHealth = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Health>();
         }
         else throw new System.Exception("Master and enemy are set in a wrong way");
        // anim = GetComponent<Animator>();
@@ -35,18 +35,20 @@ public class MinionAttack : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == enemy)
+        if (other.gameObject == GameObject.FindGameObjectWithTag(myEnemy))
         {
             enemyInRange = true;
+            Debug.Log("Minion in range");
         }
     }
 
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == enemy)
+        if (other.gameObject == GameObject.FindGameObjectWithTag(myEnemy))
         {
             enemyInRange = false;
+            Debug.Log("Minion not in range anymore");
         }
     }
 
@@ -70,9 +72,9 @@ public class MinionAttack : MonoBehaviour
     void Attack()
     {
         timer = 0f;
-        if (enemy.GetComponent<Player>().life > 0) //fix to check any enemy
+        if (enemyHealth.Life > 0) //fix to check any enemy
         {
-            enemy.GetComponent<Player>().life -= attackDamage;
+            enemyHealth.Life -= attackDamage;
         }
     }
 }

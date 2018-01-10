@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-    int coins;
-    public int life = 1000;
-    int exp;
+    public Health health;
+    CoinsManager coinsManager;
     MinionManager minionManager;
     private void Awake()
     {
+        health.Life = 1000;
         minionManager = GetComponent<MinionManager>();
         minionManager.spawnPos = this.transform;
         minionManager.MinionParent = this.transform;
