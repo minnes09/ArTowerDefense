@@ -7,10 +7,13 @@ public class MinionAttack : MonoBehaviour
     public int attackDamage = 10;
     public string myEnemy;
 
-    Animator anim;
+    //Animator anim;
     GameObject master;
     GameObject enemy;
-    bool playerInRange;
+
+    bool enemyInRange;
+    bool minionInRange;
+
     float timer;
 
     void Awake()
@@ -27,12 +30,49 @@ public class MinionAttack : MonoBehaviour
             master = GameObject.FindGameObjectWithTag("Enemy");
         }
         else throw new System.Exception("Master and enemy are set in a wrong way");
-        anim = GetComponent<Animator>();
+       // anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject == enemy)
+        {
+            enemyInRange = true;
+        }
+    }
+
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == enemy)
+        {
+            enemyInRange = false;
+        }
+    }
+
+
     void Update()
     {
+        timer += Time.deltaTime;
 
+        if (timer >= timeBetweenAttacks && enemyInRange)
+        {
+            Attack();
+        }
+
+        /*if (playerHealth.currentHealth <= 0)
+        {
+            anim.SetTrigger("PlayerDead");
+        }*/
+    }
+
+
+    void Attack()
+    {
+        timer = 0f;
+        if (enemy.GetComponent<Player>().life > 0) //fix to check any enemy
+        {
+            enemy.GetComponent<Player>().life -= attackDamage;
+        }
     }
 }

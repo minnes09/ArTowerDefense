@@ -190,6 +190,7 @@ GameObject:
   - component: {fileID: 114903766657876916}
   - component: {fileID: 195176947798169434}
   - component: {fileID: 54448527182136294}
+  - component: {fileID: 135663481206299828}
   m_Layer: 0
   m_Name: Warrior
   m_TagString: Untagged
@@ -665,6 +666,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myEnemy: 
   warpPos: {fileID: 0}
+--- !u!135 &135663481206299828
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1650126483146254}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &137202512490970470
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

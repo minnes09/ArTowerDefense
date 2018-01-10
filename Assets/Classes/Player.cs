@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     int coins;
-    int life;
+    public int life = 1000;
     int exp;
     MinionManager minionManager;
     private void Awake()

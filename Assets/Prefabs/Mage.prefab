@@ -2393,7 +2393,7 @@ Animation:
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: 99daf51ff6073ae419449cf61f32d578, type: 2}
   m_Animations:
-  - {fileID: 7400000, guid: 2df678f1cd4bcd34788ef501f9eeeaac, type: 2}
+  - {fileID: 7400000, guid: 77b1d2a5bc314714aa3d55c1159b745b, type: 2}
   - {fileID: 7400000, guid: c3c54e3c74ce19a43977eed63dd7529f, type: 2}
   - {fileID: 7400000, guid: 4fb20c3bf42721b4589386193cd0bb8a, type: 2}
   - {fileID: 7400000, guid: 99daf51ff6073ae419449cf61f32d578, type: 2}
@@ -2427,6 +2427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myEnemy: 
+  warpPos: {fileID: 0}
 --- !u!137 &137262280975772534
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

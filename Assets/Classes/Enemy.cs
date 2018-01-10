@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 
-    public int life = 100;
+    public int life = 1000;
     public float spawnDelay = 4f;
 	MinionManager minionManager;
     //string myEnemy = "Player";

@@ -7,11 +7,11 @@ public class MinionMovement : MonoBehaviour {
     Transform enemy;
     NavMeshAgent nav;               // Reference to the nav mesh agent.
     public Transform warpPos;
-    Animator anim;
+    //Animator anim;
 
     private void Awake()
     {
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
     }
     // Use this for initialization
     void Start () {
@@ -25,19 +25,19 @@ public class MinionMovement : MonoBehaviour {
         if (!GameState.Instance().Paused)
         {
             if (nav.isStopped) nav.isStopped = false;
-            if (this.transform.position != enemy.position )
+            if (this.transform.position != enemy.position ) // create a range filter to block in the range of the attack
             {
                 // ... set the destination of the nav mesh agent to the player.
                 if(nav.destination != enemy.position)   nav.SetDestination(enemy.position);
                 //set animation move
-                anim.SetTrigger(5);
+                //anim.SetTrigger(5);
             }
             else
             {
                 // ... disable the nav mesh agent.
                 nav.enabled = false;
                 //set animation idle
-                anim.SetTrigger(0);
+                //anim.SetTrigger(0);
             }
         }
         else
