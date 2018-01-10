@@ -627,7 +627,7 @@ Animation:
   - {fileID: 7400002, guid: d19f0e375a0203a4ca72964404dbd39e, type: 3}
   - {fileID: 7400004, guid: d19f0e375a0203a4ca72964404dbd39e, type: 3}
   - {fileID: 7400006, guid: d19f0e375a0203a4ca72964404dbd39e, type: 3}
-  - {fileID: 7400008, guid: d19f0e375a0203a4ca72964404dbd39e, type: 3}
+  - {fileID: 7400016, guid: d19f0e375a0203a4ca72964404dbd39e, type: 3}
   - {fileID: 7400010, guid: d19f0e375a0203a4ca72964404dbd39e, type: 3}
   - {fileID: 7400012, guid: d19f0e375a0203a4ca72964404dbd39e, type: 3}
   - {fileID: 7400014, guid: d19f0e375a0203a4ca72964404dbd39e, type: 3}
@@ -664,6 +664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myEnemy: 
+  warpPos: {fileID: 0}
 --- !u!137 &137202512490970470
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

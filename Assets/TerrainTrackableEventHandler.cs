@@ -45,10 +45,4 @@ public class TerrainTrackableEventHandler : DefaultTrackableEventHandler {
             component.enabled = false;
     }
 
-	private void ToggleObjects(bool visible){
-		var rendererComponents = GetComponentsInChildren<Renderer>(true);
-		var colliderComponents = GetComponentsInChildren<Collider>(true);
-		var canvasComponents = GetComponentsInChildren<Canvas>(true);
-		var terrainComponents = GetComponentsInChildren<Terrain> (true);
-	}
 }
