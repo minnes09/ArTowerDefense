@@ -22,7 +22,19 @@ public class Player : MonoBehaviour {
 	
 	public void SpawnMinion(AbstractMinion minion)
     {
-        if(!GameState.Instance().Paused)
-            minionManager.SpawnSingleMinion(minion.gameObject, this.transform.position);
+        if (!GameState.Instance().Paused)
+        {
+            if (coinsManager.Coins >= minion.MinionValue)
+            {
+                minionManager.SpawnSingleMinion(minion.gameObject, this.transform.position);
+                //register minion for the coins
+                coinsManager.RegisterMinion(minionManager.LastMinionSpawned());
+                coinsManager.RemoveCoins(minionManager.LastMinionSpawned().GetComponent<AbstractMinion>().MinionValue);
+            }
+            else
+            {
+                Debug.Log("<color= blue> You don't have enough money! </color>");
+            }
+        }
     }
 }

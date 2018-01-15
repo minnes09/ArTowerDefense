@@ -14,22 +14,17 @@ public class MinionAttack : MonoBehaviour, ISubject
     Health enemyHealth;
 
     bool enemyInRange;
-    public bool EnemyInRange()
-    {
-        return enemyInRange;
-    }
-
-    public bool minionInRange;
-    public bool MinionInRange()
-    {
-        return minionInRange;
-    }
-
+    bool minionInRange;
+   
     List<GameObject> minionsInRange;
     MinionHealth currentEnemyHealth;
 
     List<IObserver> observers = new List<IObserver>();
     float timer;
+
+    //events
+    public delegate void GainCoins(int coins);
+    public event GainCoins OnMinionKilled;
 
     void Start()
     {
@@ -135,8 +130,13 @@ public class MinionAttack : MonoBehaviour, ISubject
                 currentEnemyHealth.UpdateHealth(attackDamage);
                 if (currentEnemyHealth.MinionLife <= 0)
                 {
+                    if(OnMinionKilled != null)
+                    {
+                        OnMinionKilled(minionsInRange[0].GetComponent<AbstractMinion>().MinionValue);
+                    }
                     currentEnemyHealth = null;
                     minionsInRange.RemoveAt(0);
+                    
                 }
             }
         }

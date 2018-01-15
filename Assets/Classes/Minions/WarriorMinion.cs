@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class WarriorMinion : AbstractMinion {
 
-	// Use this for initialization
-	void Start () {
+    private void Awake()
+    {
+        minionValue = 50;
+    }
+    // Use this for initialization
+    void Start () {
+       
 	}
 	
 	// Update is called once per frame

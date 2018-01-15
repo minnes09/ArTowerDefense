@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,7 +25,7 @@ public class MinionManager : MonoBehaviour
 	{
         if (!GameState.Instance().Paused)
         {
-            int rndMinion = Random.Range(0, 2);
+            int rndMinion = UnityEngine.Random.Range(0, 2);
             // Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
             if (rndMinion == 0)
             {
@@ -56,5 +57,15 @@ public class MinionManager : MonoBehaviour
             GameObject instantiatedMinion = Instantiate(minion, spawnPos, this.spawnPos.rotation);
             SetupMinion(instantiatedMinion);
         }
+    }
+
+    public GameObject LastMinionSpawned()
+    {
+        return minions[minions.Count - 1];
+    }
+
+    public List<GameObject> GetMinionsList()
+    {
+        return minions;
     }
 }

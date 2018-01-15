@@ -11,7 +11,7 @@ public class MinionMovement : MonoBehaviour, IObserver {
     MinionAttack minionAttack;
     //Animator anim;
 
-    public bool cantMove;
+    bool cantMove;
     private void Awake()
     {
         //anim = GetComponent<Animator>();

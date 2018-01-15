@@ -6,6 +6,8 @@ using UnityEngine.AI;
 public class AbstractMinion : MonoBehaviour {
     private string myEnemy;
     Transform enemy;
+    protected int minionValue = 70;
+
     public string MyEnemy
     {
         get
@@ -16,6 +18,19 @@ public class AbstractMinion : MonoBehaviour {
         set
         {
             myEnemy = value;
+        }
+    }
+
+    public int MinionValue
+    {
+        get
+        {
+            return minionValue;
+        }
+
+        set
+        {
+            minionValue = value;
         }
     }
 
