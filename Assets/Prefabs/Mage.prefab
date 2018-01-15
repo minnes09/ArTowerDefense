@@ -786,13 +786,13 @@ GameObject:
   - component: {fileID: 195859376571181876}
   - component: {fileID: 114757200871681788}
   - component: {fileID: 111557998164114756}
-  - component: {fileID: 114843480538864914}
   - component: {fileID: 135226378626315060}
   - component: {fileID: 54919399928668718}
   - component: {fileID: 114824564957514574}
+  - component: {fileID: 114552604323393624}
   m_Layer: 0
   m_Name: Mage
-  m_TagString: Untagged
+  m_TagString: Minion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2418,6 +2418,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e6fad82e0f3d6f489ff6d16af016435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114552604323393624
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1711602057071990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 245c6a0f435b39246b61318253eb2158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minionLife: 250
 --- !u!114 &114757200871681788
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2431,6 +2443,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myEnemy: 
   warpPos: {fileID: 0}
+  cantMove: 0
 --- !u!114 &114824564957514574
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2445,20 +2458,7 @@ MonoBehaviour:
   timeBetweenAttacks: 0.3
   attackDamage: 25
   myEnemy: 
---- !u!114 &114843480538864914
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1711602057071990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c305ffef66c8233438335ba6e4f76607, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeBetweenAttacks: 0.4
-  attackDamage: 20
-  myEnemy: 
+  minionInRange: 0
 --- !u!135 &135226378626315060
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -2635,7 +2635,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 2
-  m_Speed: 20
+  m_Speed: 6
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

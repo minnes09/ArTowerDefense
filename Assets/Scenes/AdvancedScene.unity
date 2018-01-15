@@ -843,6 +843,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1135048820}
+  - component: {fileID: 239880838}
   m_Layer: 0
   m_Name: Tower_d
   m_TagString: Untagged
@@ -850,6 +851,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!54 &239880838
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 239880837}
+  serializedVersion: 2
+  m_Mass: 10000
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &250167507
 GameObject:
   m_ObjectHideFlags: 0
@@ -3463,6 +3479,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 338542466}
+  - component: {fileID: 992694186}
   m_Layer: 0
   m_Name: Tower_b
   m_TagString: Untagged
@@ -3470,6 +3487,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!54 &992694186
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 992694185}
+  serializedVersion: 2
+  m_Mass: 10000
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1012061481
 GameObject:
   m_ObjectHideFlags: 0

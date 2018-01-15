@@ -9,6 +9,9 @@ TagManager:
   - Mana
   - Interact
   - Enemy
+  - Minion
+  - MinionEnemy
+  - MinionPlayer
   layers:
   - Default
   - TransparentFX

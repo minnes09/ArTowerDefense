@@ -13,6 +13,7 @@ public class Player : MonoBehaviour {
         health.Life = 1000;
         minionManager = GetComponent<MinionManager>();
         minionManager.MinionParent = this.transform;
+        coinsManager = GetComponent<CoinsManager>();
     }
     // MinionManager minionManager;
     void Start () {

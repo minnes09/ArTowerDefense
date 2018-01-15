@@ -193,9 +193,10 @@ GameObject:
   - component: {fileID: 114040396661484846}
   - component: {fileID: 135663481206299828}
   - component: {fileID: 114727589768755264}
+  - component: {fileID: 114316129286804950}
   m_Layer: 0
   m_Name: Warrior
-  m_TagString: Untagged
+  m_TagString: Minion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -658,6 +659,18 @@ MonoBehaviour:
   timeBetweenAttacks: 1
   attackDamage: 50
   myEnemy: 
+--- !u!114 &114316129286804950
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1650126483146254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 245c6a0f435b39246b61318253eb2158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minionLife: 500
 --- !u!114 &114478711380464340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -683,6 +696,7 @@ MonoBehaviour:
   timeBetweenAttacks: 1
   attackDamage: 50
   myEnemy: 
+  minionInRange: 0
 --- !u!114 &114903766657876916
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -696,6 +710,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myEnemy: 
   warpPos: {fileID: 0}
+  cantMove: 0
 --- !u!135 &135663481206299828
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -775,7 +790,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.65
-  m_Speed: 20
+  m_Speed: 6
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

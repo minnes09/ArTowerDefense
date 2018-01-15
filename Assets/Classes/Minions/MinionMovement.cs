@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-public class MinionMovement : MonoBehaviour {
+public class MinionMovement : MonoBehaviour, IObserver {
     public string myEnemy;
     Transform enemy;
     NavMeshAgent nav;               // Reference to the nav mesh agent.
     public Transform warpPos;
-    private float maxDistance = 50;
-
+    private float maxDistance = 10;
+    MinionAttack minionAttack;
     //Animator anim;
 
+    public bool cantMove;
     private void Awake()
     {
         //anim = GetComponent<Animator>();
@@ -20,28 +21,59 @@ public class MinionMovement : MonoBehaviour {
         nav = GetComponent<NavMeshAgent>();
         enemy = GameObject.FindGameObjectWithTag(myEnemy).transform;
         nav.Warp(warpPos.position);
+        minionAttack = GetComponent<MinionAttack>();
+        cantMove = false;
     }
 	
 	// Update is called once per frame TOFIX
 	void Update () {
-        if (!GameState.Instance().Paused)
+        if (nav.enabled)
         {
-            if (nav.isStopped) nav.isStopped = false;
-            if (Vector3.Distance(this.transform.position, enemy.position) > maxDistance) // create a range filter to block in the range of the attack
+            if (!GameState.Instance().Paused && !this.cantMove)
             {
-                // ... set the destination of the nav mesh agent to the player.
-                if(nav.destination != enemy.position)   nav.SetDestination(enemy.position);
-                //set animation move
-                //anim.SetTrigger(5);
+                //GameUnpaused
+                if (nav.isStopped) nav.isStopped = false;
+                //minion arrived
+                if (Vector3.Distance(this.transform.position, enemy.position) > maxDistance) // create a range filter to block in the range of the attack
+                {
+                    // ... set the destination of the nav mesh agent to the player.
+                    if (nav.destination != enemy.position) nav.SetDestination(enemy.position);
+                    //set animation move
+                    //anim.SetTrigger(5);
+                }
+                else
+                {
+                    nav.isStopped = true;
+                }
             }
             else
             {
-                nav.isStopped = true;
+                if (!nav.isStopped) nav.isStopped = true;
             }
         }
-        else
+    }
+
+    public void Notify(bool stopMoving)
+    {
+        //check if changing the state
+        if (cantMove != stopMoving)
         {
-            if(!nav.isStopped)  nav.isStopped = true;
+            cantMove = stopMoving;
+            if (nav.enabled)
+            {
+                if (cantMove) StopMovement();
+                else ResumeMovement();
+            }
         }
+    }
+    void StopMovement()
+    {
+        nav.speed = 0;
+        nav.isStopped = true;
+    }
+    void ResumeMovement()
+    {
+        nav.speed = 8;
+        nav.isStopped = false;
     }
 }
