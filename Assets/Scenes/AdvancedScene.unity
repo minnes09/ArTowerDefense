@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -3163,7 +3163,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 949178067}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d58e90f58ad30f4439ad3562b70402fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 66da59f777e052c4da6ccb7e504e16e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 949178070}
@@ -3188,10 +3188,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 28
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -5457,7 +5457,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 6cf3e52d1a274eacb2a586d3f13d0e01, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0afd2b24f30211b43a09b61db0763a55, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []
@@ -6837,7 +6837,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1708382673}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15d3d62280f2b0d46a7340cdd3588fb3, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ddd363099fbbd248b1b55fa603a59cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   life: 1000
@@ -6849,7 +6849,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1708382673}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bebde4e75a70174794db3a536411fb1, type: 3}
+  m_Script: {fileID: 11500000, guid: c06fe0dba8929ee4ea136e0b34308290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1772125455
@@ -6862,12 +6862,12 @@ Prefab:
     - target: {fileID: 224949198640924992, guid: 89dca52552813a84db9af8a110f24a1f,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 704.5
+      value: 705
       objectReference: {fileID: 0}
     - target: {fileID: 224949198640924992, guid: 89dca52552813a84db9af8a110f24a1f,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 316.5
+      value: 310.5
       objectReference: {fileID: 0}
     - target: {fileID: 224949198640924992, guid: 89dca52552813a84db9af8a110f24a1f,
         type: 2}
@@ -7026,6 +7026,40 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224886260567703098, guid: 89dca52552813a84db9af8a110f24a1f,
     type: 2}
   m_PrefabInternal: {fileID: 1772125455}
+--- !u!1 &1772125457 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1363390366730208, guid: 89dca52552813a84db9af8a110f24a1f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1772125455}
+--- !u!1 &1772125458 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1682718145731374, guid: 89dca52552813a84db9af8a110f24a1f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1772125455}
+--- !u!114 &1772125459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1772125457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a320411a82b1a842a8ddf166b8c9f71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyToSpawn: 50
+--- !u!114 &1772125460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1772125458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a320411a82b1a842a8ddf166b8c9f71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyToSpawn: 30
 --- !u!1 &1842627556
 GameObject:
   m_ObjectHideFlags: 0
@@ -7585,7 +7619,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2128071100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15d3d62280f2b0d46a7340cdd3588fb3, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ddd363099fbbd248b1b55fa603a59cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   life: 1000

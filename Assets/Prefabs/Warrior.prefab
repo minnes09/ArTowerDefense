@@ -192,8 +192,7 @@ GameObject:
   - component: {fileID: 54448527182136294}
   - component: {fileID: 114040396661484846}
   - component: {fileID: 135663481206299828}
-  - component: {fileID: 114727589768755264}
-  - component: {fileID: 114316129286804950}
+  - component: {fileID: 114985433834625876}
   m_Layer: 0
   m_Name: Warrior
   m_TagString: Minion
@@ -613,7 +612,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -659,18 +658,6 @@ MonoBehaviour:
   timeBetweenAttacks: 1
   attackDamage: 50
   myEnemy: 
---- !u!114 &114316129286804950
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1650126483146254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 245c6a0f435b39246b61318253eb2158, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minionLife: 500
 --- !u!114 &114478711380464340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -682,21 +669,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b33f933f98f874380ac20b35106dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114727589768755264
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1650126483146254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a825dc107c505342b4b988fec6afc94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeBetweenAttacks: 1
-  attackDamage: 50
-  myEnemy: 
-  minionInRange: 0
 --- !u!114 &114903766657876916
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -710,7 +682,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myEnemy: 
   warpPos: {fileID: 0}
-  cantMove: 0
+--- !u!114 &114985433834625876
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1650126483146254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 286da564551e75847a2b99d1a75b7251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minionLife: 500
 --- !u!135 &135663481206299828
 SphereCollider:
   m_ObjectHideFlags: 1
