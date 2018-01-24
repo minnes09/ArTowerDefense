@@ -3,9 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MageMinion : AbstractMinion {
+
+    private int minionValue = 30;
+    public override int MinionValue
+    {
+        get
+        {
+            return minionValue;
+        }
+    }
+
     private void Awake()
     {
-        minionValue = 30;
     }
     // Use this for initialization
     void Start () {

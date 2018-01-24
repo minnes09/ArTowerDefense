@@ -72,7 +72,21 @@ public class GameState : MonoBehaviour {
     public void End(string name)
     {
         Pause();
+        GameObject gameEnd = GameObject.Find("GameEnd");
+        Text text = GameObject.Find("GameEnd").GetComponent<Text>();
+        string winner;
+        if (name == "Enemy")
+        {
+            winner = "Player";
+        }
+        else if (name == "Player")
+        {
+            winner = "Enemy";
+        }
+        else throw new System.Exception("The name of the looser is wrong");
+        text.text = "GAME END: " + winner + " wins";
+        gameEnd.SetActive(true);
         Debug.Log("GAME END: " + name + " LOSE");
-        GUI.TextArea(new Rect(50, 50, Screen.width / 2 - 25, Screen.height / 2 - 25), "GAME END: " + name + " LOSE");
+        //GUI.TextArea(new Rect(50, 50, Screen.width / 2 - 25, Screen.height / 2 - 25), "GAME END: " + name + " LOSE");
     }
 }

@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WarriorMinion : AbstractMinion {
+    private int minionValue = 50;
+    public override int MinionValue
+    {
+        get
+        {
+            return minionValue;
+        }
+    }
 
     private void Awake()
     {
-        minionValue = 50;
     }
     // Use this for initialization
     void Start () {
