@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameState : MonoBehaviour {
 
@@ -72,5 +73,6 @@ public class GameState : MonoBehaviour {
     {
         Pause();
         Debug.Log("GAME END: " + name + " LOSE");
+        GUI.TextArea(new Rect(50, 50, Screen.width / 2 - 25, Screen.height / 2 - 25), "GAME END: " + name + " LOSE");
     }
 }

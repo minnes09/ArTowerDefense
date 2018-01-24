@@ -119,7 +119,7 @@ public class MinionAttack : MonoBehaviour, ISubject
     private void AttackMinion()
     {
         timer = 0f;
-        if (minionInRange && minionsInRange.Count > 0)
+        if (minionInRange && minionsInRange.Count > 0 && minionsInRange[0] != null)
         {
             if (currentEnemyHealth == null)
             {
