@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GameState : MonoBehaviour {
 
     private bool paused = false;
+    private bool isEnd = false;
 
     public bool Paused
     {
@@ -56,7 +57,7 @@ public class GameState : MonoBehaviour {
 
     public void UnPause()
     {
-        if (Paused)
+        if (Paused && !isEnd)
         {
             Paused = false;
             Debug.Log("game Unpaused");
@@ -72,6 +73,7 @@ public class GameState : MonoBehaviour {
     public void End(string name)
     {
         Pause();
+        this.isEnd = true;
         GameObject gameEnd = GameObject.Find("GameEnd");
         Text text = GameObject.Find("GameEnd").GetComponent<Text>();
         string winner;
@@ -88,6 +90,5 @@ public class GameState : MonoBehaviour {
         gameEnd.SetActive(true);
         gameEnd.GetComponentInParent<Image>().enabled = true;
         Debug.Log("GAME END: " + name + " LOSE");
-        //GUI.TextArea(new Rect(50, 50, Screen.width / 2 - 25, Screen.height / 2 - 25), "GAME END: " + name + " LOSE");
     }
 }
