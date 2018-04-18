@@ -8,6 +8,8 @@ TagManager:
   - Fire
   - Interact
   - Enemy
+  - MinionEnemy
+  - MinionPlayer
   layers:
   - Default
   - TransparentFX

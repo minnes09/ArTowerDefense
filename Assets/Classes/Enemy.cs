@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
 
     public Health health;
-    public float spawnDelay = 4f;
+    public float spawnDelay = 10f;
 	MinionManager minionManager;
     //string myEnemy = "Player";
 	void Awake(){

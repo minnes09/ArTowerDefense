@@ -7,7 +7,7 @@ public class MinionMovement : MonoBehaviour, IObserver {
     Transform enemy;
     NavMeshAgent nav;               // Reference to the nav mesh agent.
     public Transform warpPos;
-    private float maxDistance = 10;
+    private float maxDistance = 0.05f;
     MinionAttack minionAttack;
     //Animator anim;
 

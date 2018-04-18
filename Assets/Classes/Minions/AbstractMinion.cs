@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class AbstractMinion : MonoBehaviour {
     private string myEnemy;
     Transform enemy;
-    public virtual int MinionValue { get; }
+    public virtual int MinionValue { get; set; }
 
     public string MyEnemy
     {

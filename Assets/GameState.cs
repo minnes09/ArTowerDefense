@@ -36,13 +36,14 @@ public class GameState : MonoBehaviour {
         if(gameState == null)
         {
             Debug.Log("GameState is null");
-            gameState = GameObject.FindObjectOfType<GameState>();
+            gameState = FindObjectOfType<GameState>();
             if (gameState == null)
             {
+                Debug.LogError("Singleton GameState instance has been not found.");
                 GameObject container = new GameObject("GameState");
                 container.AddComponent<GameState>();
             }
-                Debug.LogError("Singleton GameState instance has been not found.");
+                
         }
         return gameState;
     }
