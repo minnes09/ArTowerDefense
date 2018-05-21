@@ -154,13 +154,38 @@ namespace GoogleARCore.HelloAR
                     cameraPositionSameY.y = hit.Pose.position.y;
 
                     // Have Andy look toward the camera respecting his "up" perspective, which may be from ceiling.
-                    andyObject.transform.LookAt(cameraPositionSameY, andyObject.transform.up);
+                    //andyObject.transform.LookAt(cameraPositionSameY, andyObject.transform.up);
                 }
 
                 // Make Andy model a child of the anchor.
                 andyObject.transform.parent = anchor.transform;
             }
         }
+
+        //spawn the game map and objects
+        void SpawnGameplay(TrackableHit hit)
+        {
+            var andyObject = Instantiate(AndyAndroidPrefab, hit.Pose.position, hit.Pose.rotation);
+
+            // Create an anchor to allow ARCore to track the hitpoint as understanding of the physical
+            // world evolves.
+            var anchor = hit.Trackable.CreateAnchor(hit.Pose);
+
+            // Andy should look at the camera but still be flush with the plane.
+            if ((hit.Flags & TrackableHitFlags.PlaneWithinPolygon) != TrackableHitFlags.None)
+            {
+                // Get the camera position and match the y-component with the hit position.
+                Vector3 cameraPositionSameY = FirstPersonCamera.transform.position;
+                cameraPositionSameY.y = hit.Pose.position.y;
+
+                // Have Andy look toward the camera respecting his "up" perspective, which may be from ceiling.
+                //andyObject.transform.LookAt(cameraPositionSameY, andyObject.transform.up);
+            }
+
+            // Make Andy model a child of the anchor.
+            andyObject.transform.parent = anchor.transform;
+        }
+
 
         /// <summary>
         /// Quit the application if there was a connection error for the ARCore session.
