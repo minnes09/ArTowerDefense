@@ -18,7 +18,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace GoogleARCore.TextureReader
+namespace GoogleARCore.Examples.ComputerVision
 {
     using System;
     using System.Collections.Generic;
@@ -38,18 +38,35 @@ namespace GoogleARCore.TextureReader
     public class ComputerVisionController : MonoBehaviour
     {
         /// <summary>
+        /// The ARCoreSession monobehavior that manages the ARCore session.
+        /// </summary>
+        public ARCoreSession ARSessionManager;
+
+        /// <summary>
         /// An image using a material with EdgeDetectionBackground.shader to render a
         /// percentage of the edge detection background to the screen over the standard camera background.
         /// </summary>
         public Image EdgeDetectionBackgroundImage;
 
         /// <summary>
-        /// When false, uses ARCore's <c>CameraImage.TryAcquireCameraImage</c> for CPU image access at the default
-        /// resolution (640x480). When true, enables the attached TextureReader component to copy the camera texture
-        /// to the CPU at a custom resolution set on the component. This has the advantage of providing a custom
-        /// resolution CPU camera image but incurs latency for the blit to complete.
+        /// A Text box that is used to output the camera intrinsics values.
         /// </summary>
-        public bool UseCustomResolutionImage = false;
+        public Text CameraIntrinsicsOutput;
+
+        /// <summary>
+        /// A toggle that is used to select the low resolution CPU camera configuration.
+        /// </summary>
+        public Toggle LowResConfigToggle;
+
+        /// <summary>
+        /// A toggle that is used to select the high resolution CPU camera configuration.
+        /// </summary>
+        public Toggle HighResConfigToggle;
+
+        /// <summary>
+        /// A PointClickHandler to detect touch on the entire screen.
+        /// </summary>
+        public PointClickHandler ScreenTouchHandler;
 
         /// <summary>
         /// A buffer that stores the result of performing edge detection on the camera image each frame.
@@ -67,18 +84,12 @@ namespace GoogleARCore.TextureReader
         /// </summary>
         private DisplayUvCoords m_CameraImageToDisplayUvTransformation;
 
-        private TextureReader m_CachedTextureReader;
-        private float m_SwipeMomentum = 0.0f;
         private ScreenOrientation m_CachedOrientation = ScreenOrientation.Unknown;
         private Vector2 m_CachedScreenDimensions = Vector2.zero;
         private bool m_IsQuitting = false;
-
-        /// <summary>
-        /// Instant Preview Input does not support deltaPosition, so we keep track of the most recent
-        /// touch position and calculate deltas based on this.
-        /// TODO (b/74777449): Remove when deltaPosition is fixed.
-        /// </summary>
-        private Vector2 m_PreviousTouch = Vector2.zero;
+        private bool m_UseHighResCPUTexture = false;
+        private ARCoreSession.OnChooseCameraConfigurationDelegate m_OnChoseCameraConfiguration = null;
+        private bool m_Resolutioninitialized = false;
 
         /// <summary>
         /// The Unity Start() method.
@@ -86,7 +97,14 @@ namespace GoogleARCore.TextureReader
         public void Start()
         {
             Screen.sleepTimeout = SleepTimeout.NeverSleep;
-            m_CachedTextureReader = GetComponent<TextureReader>();
+
+            ScreenTouchHandler.OnPointClickDetected += _OnBackgroundClicked;
+
+            // Register the callback to set camera config before arcore session is enabled.
+            m_OnChoseCameraConfiguration = _ChooseCameraConfiguration;
+            ARSessionManager.RegisterChooseCameraConfigurationCallback(m_OnChoseCameraConfiguration);
+
+            ARSessionManager.enabled = true;
         }
 
         /// <summary>
@@ -100,14 +118,12 @@ namespace GoogleARCore.TextureReader
             }
 
             _QuitOnConnectionErrors();
-            _HandleSwipeInput();
+
+            // Change the CPU resolution checkbox visibility.
+            LowResConfigToggle.gameObject.SetActive(EdgeDetectionBackgroundImage.enabled);
+            HighResConfigToggle.gameObject.SetActive(EdgeDetectionBackgroundImage.enabled);
 
             if (!Session.Status.IsValid())
-            {
-                return;
-            }
-
-            if (UseCustomResolutionImage)
             {
                 return;
             }
@@ -119,101 +135,76 @@ namespace GoogleARCore.TextureReader
                     return;
                 }
 
-                _OnImageAvailable(TextureReaderApi.ImageFormatType.ImageFormatGrayscale,
-                    image.Width, image.Height, image.Y, 0);
+                _OnImageAvailable(image.Width, image.Height, image.YRowStride, image.Y, 0);
             }
+
+            var cameraIntrinsics = EdgeDetectionBackgroundImage.enabled
+                ? Frame.CameraImage.ImageIntrinsics : Frame.CameraImage.TextureIntrinsics;
+            string intrinsicsType = EdgeDetectionBackgroundImage.enabled ? "Image" : "Texture";
+            CameraIntrinsicsOutput.text = _CameraIntrinsicsToString(cameraIntrinsics, intrinsicsType);
         }
 
         /// <summary>
-        /// Handles the custom resolution checkbox toggle changing.
+        /// Handles the low resolution checkbox toggle changing.
         /// </summary>
         /// <param name="newValue">The new value for the checkbox.</param>
-        public void OnCustomResolutionCheckboxValueChanged(bool newValue)
+        public void OnLowResolutionCheckboxValueChanged(bool newValue)
         {
-            UseCustomResolutionImage = newValue;
-            if (newValue == true)
+            m_UseHighResCPUTexture = !newValue;
+            HighResConfigToggle.isOn = !newValue;
+
+            // Pause and resume the ARCore session to apply the camera configuration.
+            ARSessionManager.enabled = false;
+            ARSessionManager.enabled = true;
+        }
+
+        /// <summary>
+        /// Handles the high resolution checkbox toggle changing.
+        /// </summary>
+        /// <param name="newValue">The new value for the checkbox.</param>
+        public void OnHighResolutionCheckboxValueChanged(bool newValue)
+        {
+            m_UseHighResCPUTexture = newValue;
+            LowResConfigToggle.isOn = !newValue;
+
+            // Pause and resume the ARCore session to apply the camera configuration.
+            ARSessionManager.enabled = false;
+            ARSessionManager.enabled = true;
+        }
+
+        /// <summary>
+        /// Hanldes the auto focus checkbox value changed.
+        /// </summary>
+        /// <param name="autoFocusEnabled">If set to <c>true</c> auto focus will be enabled.</param>
+        public void OnAutoFocusCheckboxValueChanged(bool autoFocusEnabled)
+        {
+            var config = ARSessionManager.SessionConfig;
+            if (config != null)
             {
-                m_CachedTextureReader.enabled = true;
-                m_CachedTextureReader.OnImageAvailableCallback += _OnImageAvailable;
-            }
-            else
-            {
-                m_CachedTextureReader.enabled = false;
-                m_CachedTextureReader.OnImageAvailableCallback -= _OnImageAvailable;
+                config.CameraFocusMode = autoFocusEnabled ? CameraFocusMode.Auto : CameraFocusMode.Fixed;
             }
         }
 
         /// <summary>
-        /// Adjusts the percentage of the edge detection overlay shown based on user swipes.
+        /// Function get called when the background image got clicked.
         /// </summary>
-        private void _HandleSwipeInput()
+        private void _OnBackgroundClicked()
         {
-            const float SWIPE_SCALING_FACTOR = 1.15f;
-            const float INTERTIAL_CANCELING_FACTOR = 2.0f;
-            const float MINIMUM_MOMENTUM = .01f;
-
-            if (Input.touchCount == 0)
-            {
-                m_SwipeMomentum /= INTERTIAL_CANCELING_FACTOR;
-            }
-            else
-            {
-                m_SwipeMomentum = _GetTouchDelta();
-                m_SwipeMomentum *= SWIPE_SCALING_FACTOR;
-            }
-
-            if (Mathf.Abs(m_SwipeMomentum) < MINIMUM_MOMENTUM)
-            {
-                m_SwipeMomentum = 0;
-            }
-
-            var overlayPercentage = EdgeDetectionBackgroundImage.material.GetFloat("_OverlayPercentage");
-            overlayPercentage -= m_SwipeMomentum;
-            EdgeDetectionBackgroundImage.material.SetFloat("_OverlayPercentage", Mathf.Clamp(overlayPercentage, 0.0f, 1.0f));
-        }
-
-        /// <summary>
-        /// Gets the delta touch as a percentage of the screen.
-        /// </summary>
-        /// <returns>The delta touch as a percentage of the screen.</returns>
-        private float _GetTouchDelta()
-        {
-            Vector2 newTouch = Input.GetTouch(0).position;
-            Vector2 deltaPosition = newTouch - m_PreviousTouch;
-            m_PreviousTouch = newTouch;
-            if (Input.GetTouch(0).phase == TouchPhase.Began)
-            {
-              return 0;
-            }
-
-            switch (Screen.orientation)
-            {
-                case ScreenOrientation.LandscapeLeft:
-                    return -deltaPosition.x / Screen.width;
-                case ScreenOrientation.LandscapeRight:
-                    return deltaPosition.x / Screen.width;
-                case ScreenOrientation.Portrait:
-                    return deltaPosition.y / Screen.height;
-                case ScreenOrientation.PortraitUpsideDown:
-                    return -deltaPosition.y / Screen.height;
-                default:
-                    return 0;
-            }
+            EdgeDetectionBackgroundImage.enabled = !EdgeDetectionBackgroundImage.enabled;
         }
 
         /// <summary>
         /// Handles a new CPU image.
         /// </summary>
-        /// <param name="format">The format of the image.</param>
         /// <param name="width">Width of the image, in pixels.</param>
         /// <param name="height">Height of the image, in pixels.</param>
+        /// <param name="rowStride">Row stride of the image, in pixels.</param>
         /// <param name="pixelBuffer">Pointer to raw image buffer.</param>
         /// <param name="bufferSize">The size of the image buffer, in bytes.</param>
-        private void _OnImageAvailable(TextureReaderApi.ImageFormatType format, int width, int height, IntPtr pixelBuffer, int bufferSize)
+        private void _OnImageAvailable(int width, int height, int rowStride, IntPtr pixelBuffer, int bufferSize)
         {
-            if (format != TextureReaderApi.ImageFormatType.ImageFormatGrayscale)
+            if (!EdgeDetectionBackgroundImage.enabled)
             {
-                Debug.Log("No edge detected due to incorrect image format.");
                 return;
             }
 
@@ -234,7 +225,7 @@ namespace GoogleARCore.TextureReader
             }
 
             // Detect edges within the image.
-            if (EdgeDetector.Detect(m_EdgeDetectionResultImage, pixelBuffer, width, height))
+            if (EdgeDetector.Detect(m_EdgeDetectionResultImage, pixelBuffer, width, height, rowStride))
             {
                 // Update the rendering texture with the edge image.
                 m_EdgeDetectionBackgroundTexture.LoadRawTextureData(m_EdgeDetectionResultImage);
@@ -349,7 +340,7 @@ namespace GoogleARCore.TextureReader
         /// aspect ratio.
         /// </summary>
         /// <param name="uBorder">The cropping of the 'u' dimension.</param>
-        /// <param name="vBorder">The cropping of the 'v' dimension.<</param>
+        /// <param name="vBorder">The cropping of the 'v' dimension.</param>
         private void _GetUvBorders(out float uBorder, out float vBorder)
         {
             int imageWidth = m_EdgeDetectionBackgroundTexture.width;
@@ -437,6 +428,51 @@ namespace GoogleARCore.TextureReader
         private void _DoQuit()
         {
             Application.Quit();
+        }
+
+        /// <summary>
+        /// Generate string to print the value in CameraIntrinsics.
+        /// </summary>
+        /// <param name="intrinsics">The CameraIntrinsics to generate the string from.</param>
+        /// <param name="intrinsicsType">The string that describe the type of the intrinsics.</param>
+        /// <returns>The generated string.</returns>
+        private string _CameraIntrinsicsToString(CameraIntrinsics intrinsics, string intrinsicsType)
+        {
+            float fovX = 2.0f * Mathf.Atan2(intrinsics.ImageDimensions.x, 2 * intrinsics.FocalLength.x) * Mathf.Rad2Deg;
+            float fovY = 2.0f * Mathf.Atan2(intrinsics.ImageDimensions.y, 2 * intrinsics.FocalLength.y) * Mathf.Rad2Deg;
+
+            return string.Format("Unrotated Camera {4} Intrinsics: {0}  Focal Length: {1}{0}  " +
+                "Principal Point:{2}{0}  Image Dimensions: {3}{0}  Unrotated Field of View: ({5}º, {6}º)",
+                Environment.NewLine, intrinsics.FocalLength.ToString(),
+                intrinsics.PrincipalPoint.ToString(), intrinsics.ImageDimensions.ToString(),
+                intrinsicsType, fovX, fovY);
+        }
+
+        /// <summary>
+        /// Select the desired camera configuration.
+        /// </summary>
+        /// <param name="supportedConfigurations">A list of all supported camera configuration.</param>
+        /// <returns>The desired configuration index.</returns>
+        private int _ChooseCameraConfiguration(List<CameraConfig> supportedConfigurations)
+        {
+            if (!m_Resolutioninitialized)
+            {
+                Vector2 ImageSize = supportedConfigurations[0].ImageSize;
+                LowResConfigToggle.GetComponentInChildren<Text>().text = string.Format(
+                    "Low Resolution ({0} x {1})", ImageSize.x, ImageSize.y);
+                ImageSize = supportedConfigurations[supportedConfigurations.Count - 1].ImageSize;
+                HighResConfigToggle.GetComponentInChildren<Text>().text = string.Format(
+                    "High Resolution ({0} x {1})", ImageSize.x, ImageSize.y);
+
+                m_Resolutioninitialized = true;
+            }
+
+            if (m_UseHighResCPUTexture)
+            {
+                return supportedConfigurations.Count - 1;
+            }
+
+            return 0;
         }
     }
 }

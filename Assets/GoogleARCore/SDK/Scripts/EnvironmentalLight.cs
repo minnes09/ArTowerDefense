@@ -28,6 +28,7 @@ namespace GoogleARCore
     /// to be inline with those estimated by ARCore.
     /// </summary>
     [ExecuteInEditMode]
+    [HelpURL("https://developers.google.com/ar/reference/unity/class/GoogleARCore/EnvironmentalLight")]
     public class EnvironmentalLight : MonoBehaviour
     {
         /// <summary>
@@ -36,11 +37,15 @@ namespace GoogleARCore
         /// </summary>
         public void Update()
         {
-            if (Application.isEditor && !GoogleARCoreInternal.ARCoreProjectSettings.Instance.IsInstantPreviewEnabled)
+            if (Application.isEditor && (!Application.isPlaying ||
+                 !GoogleARCoreInternal.ARCoreProjectSettings.Instance.IsInstantPreviewEnabled))
             {
                 // Set _GlobalColorCorrection to white in editor, if the value is not set, all materials
                 // using light estimation shaders will be black.
                 Shader.SetGlobalColor("_GlobalColorCorrection", Color.white);
+
+                // Set _GlobalLightEstimation for backward compatibility.
+                Shader.SetGlobalFloat("_GlobalLightEstimation", 1f);
                 return;
             }
 
@@ -55,6 +60,9 @@ namespace GoogleARCore
 
             // Apply color correction along with normalized pixel intensity in gamma space.
             Shader.SetGlobalColor("_GlobalColorCorrection", Frame.LightEstimate.ColorCorrection * normalizedIntensity);
+
+            // Set _GlobalLightEstimation for backward compatibility.
+            Shader.SetGlobalFloat("_GlobalLightEstimation", normalizedIntensity);
         }
     }
 }

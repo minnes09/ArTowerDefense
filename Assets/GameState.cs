@@ -89,7 +89,7 @@ public class GameState : MonoBehaviour {
         else throw new System.Exception("The name of the looser is wrong");
         text.text = "GAME END: " + winner + " wins";
         gameEnd.SetActive(true);
-        gameEnd.GetComponentInParent<Image>().enabled = true;
+        gameEnd.GetComponentInParent<Text>().enabled = true;
         Debug.Log("GAME END: " + name + " LOSE");
     }
 }
