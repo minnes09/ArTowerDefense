@@ -113,6 +113,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &170282186 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1673584573705350, guid: d273cf7b44a157040847474cc5afac83,
+    type: 2}
+  m_PrefabInternal: {fileID: 423123100}
 --- !u!1 &214226867
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,7 +151,7 @@ MonoBehaviour:
     type: 2}
   AndyPlanePrefab: {fileID: 1345298481432370, guid: 2daab2f52cace3346a0bdeddaec6bb21,
     type: 2}
-  GameUI: {fileID: 1673584573705350, guid: d273cf7b44a157040847474cc5afac83, type: 2}
+  GameUI: {fileID: 170282186}
   gameContr: {fileID: 214226870}
   AndyPointPrefab: {fileID: 1190091649889860, guid: b27e8d7fe70df464188ea5dcf2af0bb3,
     type: 2}
@@ -495,6 +500,10 @@ Prefab:
     - target: {fileID: 224866884215026450, guid: d273cf7b44a157040847474cc5afac83,
         type: 2}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1673584573705350, guid: d273cf7b44a157040847474cc5afac83, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

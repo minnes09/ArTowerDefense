@@ -11,6 +11,7 @@ public class GameplayController : MonoBehaviour {
 
     public GameObject MagePrefab;
     public GameObject WarriorPrefab;
+    //public GameObject CoinsManager;
     
     // Use this for initialization
     void Start()

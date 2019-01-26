@@ -1,11 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.UI;
 public class Health : MonoBehaviour
 {
-    public int life = 1000;
+   
+    public float startLife = 1000;
+    public float life;
+    [Header("Unity Health Bar") ]
+    public Image healthBar;
 
-    public int Life
+    public void Start()
+    {
+        life = startLife;
+    }
+
+    public float Life
     {
         get
         {
@@ -22,6 +31,8 @@ public class Health : MonoBehaviour
     {
         Life -= damage;
         Debug.Log(transform.name + " health: " + life);
+        healthBar.fillAmount = Life / startLife;
+
         if (Life <= 0)
             GameState.Instance().End(transform.name);
     }

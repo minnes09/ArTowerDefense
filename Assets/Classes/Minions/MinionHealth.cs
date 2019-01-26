@@ -1,14 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.UI;
 
 public class MinionHealth : MonoBehaviour
 {
     private bool isSinking;
     private float sinkSpeed = 2f;
 
-    public int minionLife;
-    public int MinionLife
+    [Header("Unity Health Bar")]
+    public Image healthBar;
+
+    public float startLife;
+    public float minionLife;
+   
+    public float MinionLife
     {
         get
         {
@@ -21,10 +27,15 @@ public class MinionHealth : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        minionLife = startLife;
+    }
     public void UpdateHealth(int damage)
     {
         MinionLife -= damage;
         Debug.Log(transform.name + " health: " + MinionLife);
+        healthBar.fillAmount = minionLife / startLife;
         if (MinionLife <= 0)
             Death();
     }
