@@ -9,6 +9,7 @@ public class MinionMovement : MonoBehaviour, IObserver {
     public Transform warpPos;
     private float maxDistance = 0.05f;
     MinionAttack minionAttack;
+    float speed;
     //Animator anim;
 
     bool cantMove;
@@ -23,6 +24,7 @@ public class MinionMovement : MonoBehaviour, IObserver {
         nav.Warp(warpPos.position);
         minionAttack = GetComponent<MinionAttack>();
         cantMove = false;
+        speed = nav.speed;
     }
 	
 	// Update is called once per frame TOFIX
@@ -73,7 +75,7 @@ public class MinionMovement : MonoBehaviour, IObserver {
     }
     void ResumeMovement()
     {
-        nav.speed = 8;
+        nav.speed = speed;
         nav.isStopped = false;
     }
 }

@@ -837,7 +837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 245c6a0f435b39246b61318253eb2158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 114556876108976432}
   startLife: 500
   minionLife: 500
 --- !u!135 &135115412256566538

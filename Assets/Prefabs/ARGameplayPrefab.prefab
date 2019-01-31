@@ -1600,7 +1600,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1196865143273324}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.004, y: 0.072, z: 1.009}
+  m_LocalPosition: {x: -0.635, y: 0.072, z: -0.148}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4172492465922740}
@@ -2050,7 +2050,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1345298481432370}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 102.802345, y: 262.11884, z: 210.63347}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.020000031, y: 0.019999992, z: 0.020000031}
   m_Children:
   - {fileID: 4474984323706022}
@@ -5095,6 +5095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startLife: 1000
+  life: 0
   healthBar: {fileID: 114339006727941866}
 --- !u!114 &114185049665379228
 MonoBehaviour:
@@ -5349,6 +5350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startLife: 1000
+  life: 0
   healthBar: {fileID: 114611583883647898}
 --- !u!114 &114768167225774366
 MonoBehaviour:
@@ -5496,8 +5498,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 4639984581619492}
   m_AABB:
-    m_Center: {x: 0.001953125, y: 0, z: 3.0888672}
-    m_Extent: {x: 0.68707025, y: 0.1516679, z: 1.5523028}
+    m_Center: {x: 0.00000029802322, y: -0.00038146973, z: 3.0871334}
+    m_Extent: {x: 0.6860505, y: 0.15108258, z: 1.5527455}
   m_DirtyAABB: 0
 --- !u!137 &137190949482080162
 SkinnedMeshRenderer:
@@ -5544,8 +5546,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 4022620533376628}
   m_AABB:
-    m_Center: {x: 0, y: 0, z: 3.0859375}
-    m_Extent: {x: 0.684695, y: 0.15063304, z: 1.5531126}
+    m_Center: {x: 0.00000059604645, y: -0.00038146973, z: 3.0870972}
+    m_Extent: {x: 0.6860509, y: 0.15107879, z: 1.552756}
   m_DirtyAABB: 0
 --- !u!137 &137220144126046210
 SkinnedMeshRenderer:
@@ -5592,8 +5594,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 4184050530627434}
   m_AABB:
-    m_Center: {x: 0, y: -0.033203125, z: 5.388672}
-    m_Extent: {x: 1.5154581, y: 0.28529057, z: 2.0552213}
+    m_Center: {x: -0.0000019073486, y: -0.03388977, z: 5.3900757}
+    m_Extent: {x: 1.5134834, y: 0.28541538, z: 2.0546508}
   m_DirtyAABB: 0
 --- !u!154 &154867482062765812
 TerrainCollider:

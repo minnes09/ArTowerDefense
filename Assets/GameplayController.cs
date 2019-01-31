@@ -8,10 +8,10 @@ public class GameplayController : MonoBehaviour {
 	
     public Button SpawnMage;
     public Button SpawnWarrior;
+    public EventTriggeredTextDelegate coinsDelegate;
 
     public GameObject MagePrefab;
     public GameObject WarriorPrefab;
-    //public GameObject CoinsManager;
     
     // Use this for initialization
     void Start()
@@ -23,5 +23,6 @@ public class GameplayController : MonoBehaviour {
     {
         SpawnMage.onClick.AddListener(() => player.SpawnMinion(MagePrefab.GetComponent<MageMinion>()));
         SpawnWarrior.onClick.AddListener(() => player.SpawnMinion(WarriorPrefab.GetComponent<WarriorMinion>()));
+        coinsDelegate.LinkCoinsTest(player.GetComponent<CoinsManager>());
     }
 }
